@@ -1,0 +1,237 @@
+/* -----------------------------------------------------------
+   ✦ THEME VARIABLES: White & Sage Green ✦
+----------------------------------------------------------- */
+:root {
+    --bg-color: #fcfcfc;
+    /* ขาวสะอาด */
+    --card-bg: #ffffff;
+    /* ขาวบริสุทธิ์ */
+    --text-main: #5e5e5e;
+    /* เทาเข้ม นุ่มตา */
+    --text-gold: #bfa37c;
+    /* ทองด้าน พรีเมียม */
+    --sage-green: #8da399;
+    /* เขียวใบไม้ตุ่นๆ */
+    --soft-cream: #f9f7f2;
+    /* ครีมจางๆ */
+    --shadow-soft: 0 15px 40px rgba(141, 163, 153, 0.15);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e8f3e9, #f9f9f7);
+
+    font-family: 'Prompt', sans-serif;
+    color: var(--text-main);
+    height: 100vh;
+    /* เต็มจอ iPad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* ห้ามเลื่อนหน้าจอ */
+}
+
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(20px, 20px);
+    }
+}
+
+/* -----------------------------------------------------------
+   ✦ MAIN CARD (iPad Center) ✦
+----------------------------------------------------------- */
+.container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.spa-card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 500px;
+    /* ขนาดกำลังดีบน iPad */
+    padding: 50px 40px;
+    border-radius: 20px;
+    /* มุมมนนุ่มๆ */
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    position: relative;
+    border: 1px solid #f0f0f0;
+}
+
+/* กรอบซ้อน 2 ชั้น เพิ่มมิติ */
+.spa-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid var(--soft-cream);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+/* -----------------------------------------------------------
+   ✦ CONTENT & TYPOGRAPHY ✦
+----------------------------------------------------------- */
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    background: var(--soft-cream);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: var(--sage-green);
+}
+
+.brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    color: var(--text-main);
+    letter-spacing: 2px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.brand-slogan {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--sage-green);
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.divider {
+    margin: 30px 0;
+    position: relative;
+    height: 1px;
+    background: #eee;
+}
+
+.divider-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 0 15px;
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+/* -----------------------------------------------------------
+   ✦ BUTTONS (iPad Optimized) ✦
+   ปุ่มใหญ่ แตะง่าย ไม่ต้องเล็งเยอะ
+----------------------------------------------------------- */
+.menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    /* พื้นที่แตะเยอะๆ */
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.lang-code {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    color: var(--text-gold);
+    font-weight: 600;
+}
+
+.lang-label {
+    font-size: 3.5rem;
+    color: var(--text-main);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.ar-font {
+    font-family: 'Prompt', sans-serif;
+}
+
+/* Hover States */
+.menu-item:hover {
+    border-color: var(--sage-green);
+    background: var(--soft-cream);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.menu-item:active {
+    transform: scale(0.98);
+}
+
+/* -----------------------------------------------------------
+   ✦ RESPONSIVE (iPad Specfic) ✦
+----------------------------------------------------------- */
+.footer-info {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* Animation */
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Query สำหรับ iPad แนวนอน หรือหน้าจอใหญ่ */
+@media (min-width: 768px) {
+    .spa-card {
+        padding: 60px;
+        max-width: 550px;
+    }
+
+    .brand-name {
+        font-size: 4rem;
+    }
+
+    .menu-item {
+        padding: 25px 40px;
+        /* เพิ่มขนาดปุ่มให้อีกสำหรับนิ้ว */
+    }
+
+    .lang-label {
+        font-size: 2.2rem;
+    }
+}
