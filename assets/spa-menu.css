@@ -1,0 +1,375 @@
+/* -----------------------------------------------------------
+       ✦ WHITE MINIMALIST FLORAL THEME VARIABLES ✦
+    ----------------------------------------------------------- */
+:root {
+    --app-bg: #f4f4f2;
+    /* พื้นหลังแอพสีเทาอมครีมจางๆ */
+    --paper-bg: #ffffff;
+    /* สีการ์ดขาวสะอาด */
+    --text-dark: #4a4a4a;
+    /* ตัวหนังสือสีเทาเข้ม (นุ่มกว่าสีดำ) */
+    --text-gold: #b8a07e;
+    /* สีทองด้าน (Muted Gold) ดูผู้ดี */
+    --text-light-grey: #888888;
+    /* สีเทาอ่อนสำหรับคำบรรยาย */
+    --accent-green: #a4b3a1;
+    /* สีเขียวใบไม้จางๆ (Sage Green) */
+}
+
+/* Reset & Base */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--app-bg);
+    /* เพิ่ม Texture กระดาษสาบางๆ ให้พื้นหลัง */
+        background: linear-gradient(135deg, #e8f3e9, #f9f9f7);
+
+    font-family: 'Cormorant Garamond', 'Prompt', serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    color: var(--text-dark);
+}
+
+/* -----------------------------------------------------------
+       ✦ BOOK CONTAINER ✦
+    ----------------------------------------------------------- */
+.book-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    height: 100%;
+    width: 100%;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.book-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* -----------------------------------------------------------
+       ✦ THE PAGE (The Floral Card) ✦
+    ----------------------------------------------------------- */
+.page {
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+/* ตัวการ์ดเมนู */
+.content-box {
+    background-color: var(--paper-bg);
+    width: 100%;
+    max-width: 600px;
+    height: 85vh;
+    padding: 70px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+
+    /* เงานุ่มๆ แบบ Clean Minimal */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    /* มุมมนขึ้นเล็กน้อย */
+    border: 1px solid #f0f0f0;
+    /* ขอบสีเทาจางๆ */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* ซ่อนส่วนเกินของดอกไม้ */
+}
+
+/* -----------------------------------------------------------
+       ✦ FLORAL DECORATION (ดอกไม้สีน้ำ) ✦
+       ใช้ pseudo-elements สร้างลวดลายมุมการ์ด
+    ----------------------------------------------------------- */
+/* ดอกไม้มุมบนซ้าย */
+.content-box::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 250px;
+    height: 250px;
+    /* Placeholder รูปดอกไม้สีน้ำ (คุณสามารถเปลี่ยน URL เป็นรูปของคุณเองได้) */
+    background-image: url('https://i.pinimg.com/originals/7f/02/a7/7f02a752373700de76a1bc79f9c34349.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    /* จางๆ ไม่แย่งซีนตัวหนังสือ */
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(-20deg);
+}
+
+/* ดอกไม้มุมล่างขวา */
+.content-box::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 300px;
+    height: 300px;
+    /* ใช้รูปเดิมแต่กลับด้าน */
+    background-image: url('https://i.pinimg.com/originals/7f/02/a7/7f02a752373700de76a1bc79f9c34349.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(160deg);
+}
+
+/* ลบ Border เดิมออก เพื่อความมินิมอล */
+.page-border {
+    display: none;
+}
+
+/* -----------------------------------------------------------
+       ✦ TYPOGRAPHY (จัดวางให้คลีน) ✦
+       เพิ่ม z-index เพื่อให้ลอยอยู่เหนือรูปดอกไม้
+    ----------------------------------------------------------- */
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.1;
+    font-weight: 500;
+    /* บางลงนิดนึง */
+    letter-spacing: 1px;
+    z-index: 2;
+    position: relative;
+}
+
+.sub-title {
+    font-family: 'Cairo', 'Prompt', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-gold);
+    margin-top: 15px;
+    margin-bottom: 35px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    z-index: 2;
+    position: relative;
+}
+
+.description {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-light-grey);
+    margin-bottom: 50px;
+    font-style: normal;
+    /* เอาตัวเอียงออกให้อ่านง่ายสไตล์มินิมอล */
+    max-width: 85%;
+    z-index: 2;
+    position: relative;
+}
+
+/* -----------------------------------------------------------
+       ✦ PRICE SECTION (Clean Style) ✦
+    ----------------------------------------------------------- */
+.price-box {
+    width: 100%;
+    max-width: 380px;
+    /* เปลี่ยนจากเส้นทึบ เป็นเส้นประบางๆ */
+    border-top: 1px dashed #e0e0e0;
+    border-bottom: 1px dashed #e0e0e0;
+    padding: 30px 0;
+    z-index: 2;
+    position: relative;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin: 12px 0;
+    color: var(--text-dark);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+.price-ar {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+}
+
+/* -----------------------------------------------------------
+       ✦ NAVIGATION & UI (ปรับให้เข้ากับธีมขาว) ✦
+    ----------------------------------------------------------- */
+/* ปุ่ม Back Home สีขาวคลีน */
+.back-home {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 100;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.back-home:hover {
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ตัวบอก Swipe */
+.nav-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-light-grey);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadePulse 3s infinite;
+    z-index: 10;
+    pointer-events: none;
+    font-weight: 500;
+}
+
+/* ปุ่มติดต่อ */
+.contact-bar {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 100;
+    display: flex;
+    gap: 15px;
+}
+
+.contact-btn {
+    background: #fff;
+    color: var(--text-gold);
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid var(--paper-bg);
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    color: var(--accent-green);
+}
+
+/* -----------------------------------------------------------
+       ✦ ANIMATIONS & UTILS ✦
+    ----------------------------------------------------------- */
+@keyframes fadePulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.rtl h2 {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.rtl .description {
+    font-family: 'Cairo', sans-serif;
+    font-style: normal;
+}
+
+/* กลับด้านดอกไม้สำหรับภาษาอาหรับ (Optional) */
+.rtl .content-box::before {
+    transform: rotate(70deg) scaleX(-1);
+    left: auto;
+    right: -50px;
+}
+
+.rtl .content-box::after {
+    transform: rotate(-110deg) scaleX(-1);
+    right: auto;
+    left: -60px;
+}
+
+
+/* -----------------------------------------------------------
+       ✦ PAGE INDICATOR (DOTS) ✦
+    ----------------------------------------------------------- */
+    .dots-container {
+        position: fixed;
+        bottom: 52px; /* วางอยู่เหนือปุ่ม Contact เล็กน้อย */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px; /* ระยะห่างระหว่างจุด */
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.6); /* พื้นหลังจางๆ รองจุด */
+        backdrop-filter: blur(4px);
+        padding: 8px 15px;
+        border-radius: 20px;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #d1d1d1; /* สีจุดปกติ (เทาอ่อน) */
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* สถานะ Active (หน้าที่เปิดอยู่) */
+    .dot.active {
+        background-color: var(--text-gold); /* สีทอง */
+        transform: scale(1.8); /* ขยายใหญ่ขึ้นนิดนึง */
+        box-shadow: 0 0 50px rgba(184, 160, 126, 0.5); /* เรืองแสงเบาๆ */
+    }
+
+    /* Responsive: ถ้าหน้าจอเล็กมาก (มือถือแนวตั้ง) ให้จุดเล็กลง */
+    @media (max-width: 600px) {
+        .dots-container {
+            bottom: 50px;
+            gap: 6px;
+            padding: 6px 12px;
+        }
+        .dot {
+            width: 6px;
+            height: 6px;
+        }
+    }
