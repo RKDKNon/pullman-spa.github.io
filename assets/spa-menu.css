@@ -22,14 +22,29 @@ body {
     padding: 0;
     background-color: var(--app-bg);
     /* เพิ่ม Texture กระดาษสาบางๆ ให้พื้นหลัง */
-        background: linear-gradient(135deg, #e8f3e9, #f9f9f7);
+    background: linear-gradient(135deg, #e8f3e9, #f9f9f7);
 
-    font-family: 'Cormorant Garamond', 'Prompt', serif;
+    /* font-family: 'Cormorant Garamond', 'Prompt', serif; */
     overflow: hidden;
     height: 100vh;
     width: 100vw;
     color: var(--text-dark);
 }
+
+.bg-blur {
+    position: fixed;
+    inset: 0;
+    background-image: url("../assets/images/3.png");
+    background-size: cover;
+    background-position: center;
+    filter: blur(14px);
+    transform: scale(1.15);
+    /* กันขอบภาพเบลอ */
+    z-index: -1;
+}
+
+
+
 
 /* -----------------------------------------------------------
        ✦ BOOK CONTAINER ✦
@@ -69,7 +84,7 @@ body {
     width: 100%;
     max-width: 600px;
     height: 85vh;
-    padding: 70px 40px;
+    padding: 20px 20px;
     box-sizing: border-box;
     text-align: center;
     position: relative;
@@ -198,12 +213,12 @@ h2 {
     font-size: 1.2rem;
     margin: 12px 0;
     color: var(--text-dark);
-    font-family: 'Cormorant Garamond', serif;
+    /* font-family: 'Cormorant Garamond', serif; */
     font-weight: 600;
 }
 
 .price-ar {
-    font-family: 'Cairo', sans-serif;
+    /* font-family: 'Cairo', sans-serif; */
     font-size: 1rem;
 }
 
@@ -213,16 +228,16 @@ h2 {
 /* ปุ่ม Back Home สีขาวคลีน */
 .back-home {
     position: fixed;
-    top: 25px;
-    left: 25px;
+    top: 15px;
+    left: 15px;
     z-index: 100;
     text-decoration: none;
     color: var(--text-dark);
-    font-size: 0.9rem;
+    font-size: 1rem;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     padding: 10px 25px;
-    border-radius: 30px;
+    border-radius: 20px;
     border: 1px solid #e0e0e0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: 0.3s;
@@ -241,7 +256,7 @@ h2 {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--text-light-grey);
+    color: #000000;
     font-size: 0.75rem;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -330,46 +345,143 @@ h2 {
 /* -----------------------------------------------------------
        ✦ PAGE INDICATOR (DOTS) ✦
     ----------------------------------------------------------- */
+.dots-container {
+    position: fixed;
+    bottom: 5px;
+    /* วางอยู่เหนือปุ่ม Contact เล็กน้อย */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    /* ระยะห่างระหว่างจุด */
+    z-index: 100;
+    background: rgba(80, 80, 80, 0.204);
+    /* พื้นหลังจางๆ รองจุด */
+    backdrop-filter: blur(4px);
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    /* สีจุดปกติ (เทาอ่อน) */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* สถานะ Active (หน้าที่เปิดอยู่) */
+.dot.active {
+    background-color: var(--text-gold);
+    /* สีทอง */
+    transform: scale(1.5);
+    /* ขยายใหญ่ขึ้นนิดนึง */
+    box-shadow: 0 0 50px rgba(184, 160, 126, 0.5);
+    /* เรืองแสงเบาๆ */
+}
+
+/* Responsive: ถ้าหน้าจอเล็กมาก (มือถือแนวตั้ง) ให้จุดเล็กลง */
+@media (max-width: 600px) {
     .dots-container {
-        position: fixed;
-        bottom: 52px; /* วางอยู่เหนือปุ่ม Contact เล็กน้อย */
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px; /* ระยะห่างระหว่างจุด */
-        z-index: 100;
-        background: rgba(255, 255, 255, 0.6); /* พื้นหลังจางๆ รองจุด */
-        backdrop-filter: blur(4px);
-        padding: 8px 15px;
-        border-radius: 20px;
-        border: 1px solid rgba(0,0,0,0.05);
+        bottom: 10px;
+        gap: 6px;
+        padding: 6px 12px;
     }
 
     .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #d1d1d1; /* สีจุดปกติ (เทาอ่อน) */
-        cursor: pointer;
-        transition: all 0.3s ease;
+        width: 6px;
+        height: 6px;
+    }
+}
+
+
+/* -----------------------------------------------------------
+       ✦ 2. แก้ไขกล่องข้อความ (Content Box Fix) ✦
+       เพื่อให้รองรับเนื้อหาที่ยาวขึ้น หรือหน้าจอที่เล็ก
+    ----------------------------------------------------------- */
+    .content-box {
+        /* เปลี่ยนการจัดวาง */
+        justify-content: flex-start; /* เริ่มเรียงจากด้านบนเสมอ */
+        
+        /* เปิดให้ Scroll ได้ถ้าเนื้อหาล้น */
+        overflow-y: auto;
+        
+        /* ซ่อน Scrollbar ให้ดูคลีนๆ (แต่ยังเลื่อนได้) */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    
+    /* ซ่อน Scrollbar สำหรับ Chrome/Safari */
+    .content-box::-webkit-scrollbar {
+        display: none;
     }
 
-    /* สถานะ Active (หน้าที่เปิดอยู่) */
-    .dot.active {
-        background-color: var(--text-gold); /* สีทอง */
-        transform: scale(1.8); /* ขยายใหญ่ขึ้นนิดนึง */
-        box-shadow: 0 0 50px rgba(184, 160, 126, 0.5); /* เรืองแสงเบาๆ */
+/* -----------------------------------------------------------
+   ✦ GALLERY ROW (3 รูปเรียงกัน) ✦
+----------------------------------------------------------- */
+.gallery-row {
+    display: flex;
+    /* สั่งให้ลูกๆ เรียงเป็นแนวนอน */
+    gap: 10px;
+    /* ระยะห่างระหว่างรูป */
+    width: 100%;
+    /* กว้างเต็มกล่อง */
+    margin-top: 25px;
+    /* เว้นระยะห่างจากราคาด้านบน */
+    justify-content: center;
+    /* จัดกึ่งกลาง */
+}
+
+.gallery-row img {
+    flex: 1;
+    /* แบ่งความกว้างกันคนละเท่าๆ กัน (สำคัญ!) */
+    width: 0;
+    /* เทคนิคแก้บั๊ก Flexbox ให้หดได้จริง */
+    min-width: 0;
+
+    height: 120px;
+    /* กำหนดความสูงเท่ากันเป๊ะ */
+    object-fit: cover;
+    /* ตัดภาพส่วนเกินออก ภาพไม่บี้แบน */
+    border-radius: 8px;
+    /* มุมมน */
+
+    /* ตกแต่งให้สวย */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fff;
+    /* ขอบขาวเหมือนรูปถ่าย */
+
+    /* ลูกเล่นเวลาเอาเมาส์ชี้ (Optional) */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* เอฟเฟกต์ซูมตอนชี้ (เฉพาะในคอม/iPad) */
+.gallery-row img:hover {
+    transform: scale(1.05);
+    /* ขยายใหญ่ขึ้นนิดนึง */
+    z-index: 10;
+    /* ลอยขึ้นมาทับเพื่อน */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* -----------------------------------------------------------
+   ✦ MOBILE ADJUSTMENT (สำหรับมือถือจอเล็ก) ✦
+----------------------------------------------------------- */
+@media (max-width: 600px) {
+    .gallery-row {
+        gap: 6px;
+        /* ลดช่องว่างลง */
+        margin-top: 15px;
     }
 
-    /* Responsive: ถ้าหน้าจอเล็กมาก (มือถือแนวตั้ง) ให้จุดเล็กลง */
-    @media (max-width: 600px) {
-        .dots-container {
-            bottom: 50px;
-            gap: 6px;
-            padding: 6px 12px;
-        }
-        .dot {
-            width: 6px;
-            height: 6px;
-        }
+    .gallery-row img {
+        height: 80px;
+        /* ลดความสูงรูปในมือถือ */
+        border-width: 1px;
+        /* ลดขอบขาว */
     }
+}
