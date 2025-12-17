@@ -156,7 +156,7 @@ body {
     ----------------------------------------------------------- */
 h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 3.2rem;
+    font-size: 4rem;
     color: var(--text-dark);
     margin: 0;
     line-height: 1.1;
@@ -181,7 +181,7 @@ h2 {
 }
 
 .description {
-    font-size: 1.05rem;
+    font-size: 1.5rem;
     line-height: 1.9;
     color: var(--text-light-grey);
     margin-bottom: 50px;
@@ -210,7 +210,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 2rem;
     margin: 12px 0;
     color: var(--text-dark);
     /* font-family: 'Cormorant Garamond', serif; */
@@ -253,7 +253,7 @@ h2 {
 /* ตัวบอก Swipe */
 .nav-indicator {
     position: fixed;
-    bottom: 30px;
+    bottom: 11em;
     left: 50%;
     transform: translateX(-50%);
     color: #000000;
@@ -347,7 +347,7 @@ h2 {
     ----------------------------------------------------------- */
 .dots-container {
     position: fixed;
-    bottom: 5px;
+    bottom: 6em;
     /* วางอยู่เหนือปุ่ม Contact เล็กน้อย */
     left: 50%;
     transform: translateX(-50%);
@@ -386,7 +386,7 @@ h2 {
 /* Responsive: ถ้าหน้าจอเล็กมาก (มือถือแนวตั้ง) ให้จุดเล็กลง */
 @media (max-width: 600px) {
     .dots-container {
-        bottom: 10px;
+        bottom: 6.6em;
         gap: 6px;
         padding: 6px 12px;
     }
@@ -402,22 +402,25 @@ h2 {
        ✦ 2. แก้ไขกล่องข้อความ (Content Box Fix) ✦
        เพื่อให้รองรับเนื้อหาที่ยาวขึ้น หรือหน้าจอที่เล็ก
     ----------------------------------------------------------- */
-    .content-box {
-        /* เปลี่ยนการจัดวาง */
-        justify-content: flex-start; /* เริ่มเรียงจากด้านบนเสมอ */
-        
-        /* เปิดให้ Scroll ได้ถ้าเนื้อหาล้น */
-        overflow-y: auto;
-        
-        /* ซ่อน Scrollbar ให้ดูคลีนๆ (แต่ยังเลื่อนได้) */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-    }
-    
-    /* ซ่อน Scrollbar สำหรับ Chrome/Safari */
-    .content-box::-webkit-scrollbar {
-        display: none;
-    }
+.content-box {
+    /* เปลี่ยนการจัดวาง */
+    justify-content: flex-start;
+    /* เริ่มเรียงจากด้านบนเสมอ */
+
+    /* เปิดให้ Scroll ได้ถ้าเนื้อหาล้น */
+    overflow-y: auto;
+
+    /* ซ่อน Scrollbar ให้ดูคลีนๆ (แต่ยังเลื่อนได้) */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* ซ่อน Scrollbar สำหรับ Chrome/Safari */
+.content-box::-webkit-scrollbar {
+    display: none;
+}
 
 /* -----------------------------------------------------------
    ✦ GALLERY ROW (3 รูปเรียงกัน) ✦
@@ -442,7 +445,7 @@ h2 {
     /* เทคนิคแก้บั๊ก Flexbox ให้หดได้จริง */
     min-width: 0;
 
-    height: 120px;
+    height: 160px;
     /* กำหนดความสูงเท่ากันเป๊ะ */
     object-fit: cover;
     /* ตัดภาพส่วนเกินออก ภาพไม่บี้แบน */
@@ -484,4 +487,23 @@ h2 {
         border-width: 1px;
         /* ลดขอบขาว */
     }
+}
+
+.footer-contact {
+    width: 100%;
+    text-align: center;
+
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 1.1em;
+
+    font-size:1.4rem;
+    color: var(--text-dark);
+ 
+    line-height: 1.1;
+    font-weight: 500;
+    /* บางลงนิดนึง */
+    letter-spacing: 1px;
+    z-index: 2;
+
 }
