@@ -156,7 +156,7 @@ body {
     ----------------------------------------------------------- */
 h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem;
+    font-size: 3.2rem;
     color: var(--text-dark);
     margin: 0;
     line-height: 1.1;
@@ -181,7 +181,7 @@ h2 {
 }
 
 .description {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: 1.9;
     color: var(--text-light-grey);
     margin-bottom: 50px;
